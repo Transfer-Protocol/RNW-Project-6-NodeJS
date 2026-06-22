@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>AdminLTE 4 | Data Tables</title>
+
+    <!--begin::Accessibility Meta Tags-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#007bff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+    <!--end::Accessibility Meta Tags-->
+
+    <!--begin::Primary Meta Tags-->
+    <meta name="title" content="AdminLTE 4 | Data Tables" />
+    <meta name="author" content="ColorlibHQ" />
+    <meta
+      name="description"
+      content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS. Fully accessible with WCAG 2.1 AA compliance."
+    />
+    <meta
+      name="keywords"
+      content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard, accessible admin panel, WCAG compliant"
+    />
+    <!--end::Primary Meta Tags-->
+
+    <!--begin::Accessibility Features-->
+    <!-- Skip links will be dynamically added by accessibility.js -->
+    <meta name="supported-color-schemes" content="light dark" />
+    <link rel="preload" href="/css/adminlte.css" as="style" />
+    <!--end::Accessibility Features-->
+
+    <!--begin::Fonts-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css"
+      integrity="sha256-tXJfXfp6Ewt1ilPzLDtQnJV4hclT9XuaZUKyUvmyr+Q="
+      crossorigin="anonymous"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <!--end::Fonts-->
+
+    <!--begin::Third Party Plugin(OverlayScrollbars)-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css"
+      crossorigin="anonymous"
+    />
+    <!--end::Third Party Plugin(OverlayScrollbars)-->
+
+    <!--begin::Third Party Plugin(Bootstrap Icons)-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+      crossorigin="anonymous"
+    />
+    <!--end::Third Party Plugin(Bootstrap Icons)-->
+
+    <!--begin::Required Plugin(AdminLTE)-->
+    <link rel="stylesheet" href="/css/adminlte.css" />
+    <!--end::Required Plugin(AdminLTE)-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css"
+      crossorigin="anonymous"
+    />
+
+    <style>
+        @media (hover: hover) and (pointer: fine) {
+            html[data-bs-theme="dark"] .tabulator .tabulator-header .tabulator-col.tabulator-sortable.tabulator-col-sorter-element:hover{
+                background-color: #0000004F;
+            }
+        }
+
+        .tabulator .tabulator-footer{
+            background-color: unset;
+        }
+
+        .tabulator .tabulator-footer .tabulator-paginator > .tabulator-page{
+            display: inline-block;
+            background-color: white;
+            color: black;
+            border-radius: 0;
+            border-right-width: 0;
+            border-left-width: 0;
+        }
+
+        .tabulator .tabulator-footer .tabulator-paginator > .tabulator-page[data-page="first"]{
+            border-start-start-radius: 5px;
+            border-end-start-radius: 5px;
+            border-left-width: 1px;
+        }
+
+        .tabulator .tabulator-footer .tabulator-paginator > .tabulator-page[data-page="last"]{
+            border-end-end-radius: 5px;
+            border-start-end-radius: 5px;
+            border-right-width: 1px;
+        }
+
+        .tabulator .tabulator-footer .tabulator-paginator > .tabulator-pages > .tabulator-page{
+            border-radius: 0;
+            border-left: 0;
+            border-right: 0;
+            border-color: #dee2e6;
+        }
+
+        .tabulator .tabulator-footer .tabulator-paginator > .tabulator-page,
+        .tabulator .tabulator-footer .tabulator-paginator > .tabulator-pages > .tabulator-page{
+            color: black;
+        }
+
+        html[data-bs-theme="dark"] .tabulator .tabulator-footer .tabulator-paginator > .tabulator-pages > .tabulator-page{
+            color: white;
+        }
+
+        .tabulator .tabulator-footer .tabulator-paginator > .tabulator-pages > .tabulator-page.active{
+            color: white;
+        }
+
+        .tabulator .tabulator-footer .tabulator-paginator > .tabulator-pages > .tabulator-page.active:hover{
+            color: black;
+        }
+
+        html[data-bs-theme="dark"] .tabulator .tabulator-footer .tabulator-paginator > .tabulator-pages > .tabulator-page:not(.active):hover{
+            color: black;
+        }
+
+        html[data-bs-theme="dark"] .tabulator .tabulator-footer .tabulator-paginator > .tabulator-page{
+            background-color: #0000004F;
+            color: white;
+        }
+
+        html[data-bs-theme="dark"] .tabulator .tabulator-footer .tabulator-paginator > label{
+            color: white;
+        }
+
+    </style>
+  </head>
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <div class="app-wrapper">
+      <!--begin::Header-->
+      <%- include('header') %>
+      <!--end::Header-->
+      <!--begin::Sidebar-->
+      <%- include('sidebar') %>
+      <!--end::Sidebar-->
+      <main class="app-main">
+        <div class="app-content-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="mb-0">Users</h3>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="/">Home</a></li>
+                  <li class="breadcrumb-item"><a href="#">Users</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">View</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-content">
+          <div class="container-fluid">
+            <div class="card">
+              <div class="card-header d-flex justify-content-center">
+                <h3 class="card-title text-center fs-2">Users</h3>
+              </div>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Avatar</th>
+                    <th>Username</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Joined</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% users.map((v, i) => { %>
+                    <tr>
+                      <td><%= i + 1 %></td>
+                      <td><img src="<%= v.avatar %>" width="64" height="64" class="rounded-circle object-fit-cover" alt="Avatar"></td>
+                      <td><%= v.username %></td>
+                      <td><%= v.fname %> <%= v.lname %></td>
+                      <td><%= v.email %></td>
+                      <td><%= v.role %></td>
+                      <td><%= new Date(v.createdAt).toLocaleDateString({}, {'day': 'numeric', 'month': 'long', 'year': 'numeric'}) %></td>
+                    </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+      <!--begin::Footer-->
+      <%- include('footer') %>
+      <!--end::Footer-->
+    </div>
+    <!--begin::Third Party Plugin(OverlayScrollbars)-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--end::Third Party Plugin(OverlayScrollbars)--><!--begin::Required Plugin(popperjs for Bootstrap 5)-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--end::Required Plugin(popperjs for Bootstrap 5)--><!--begin::Required Plugin(Bootstrap 5)-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
+    <script src="/js/adminlte.js"></script>
+    <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
+    <script>
+      const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
+      const Default = {
+        scrollbarTheme: 'os-theme-light',
+        scrollbarAutoHide: 'leave',
+        scrollbarClickScroll: true,
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
+
+        // Disable OverlayScrollbars on mobile devices to prevent touch interference
+        const isMobile = window.innerWidth <= 992;
+
+        if (
+          sidebarWrapper &&
+          OverlayScrollbarsGlobal?.OverlayScrollbars !== undefined &&
+          !isMobile
+        ) {
+          OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
+            scrollbars: {
+              theme: Default.scrollbarTheme,
+              autoHide: Default.scrollbarAutoHide,
+              clickScroll: Default.scrollbarClickScroll,
+            },
+          });
+        }
+      });
+    </script>
+    <!--end::OverlayScrollbars Configure--><!--begin::Color Mode Toggle (#6010)-->
+    <script>
+      (() => {
+        'use strict';
+
+        const STORAGE_KEY = 'lte-theme';
+
+        const getStoredTheme = () => localStorage.getItem(STORAGE_KEY);
+        const setStoredTheme = (theme) => localStorage.setItem(STORAGE_KEY, theme);
+
+        const prefersDark = () => globalThis.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        const getPreferredTheme = () => {
+          const stored = getStoredTheme();
+          if (stored) return stored;
+          return prefersDark() ? 'dark' : 'light';
+        };
+
+        const setTheme = (theme) => {
+          const resolved = theme === 'auto' ? (prefersDark() ? 'dark' : 'light') : theme;
+          document.documentElement.setAttribute('data-bs-theme', resolved);
+        };
+
+        setTheme(getPreferredTheme());
+
+        const showActiveTheme = (theme) => {
+          // Highlight the active dropdown option
+          document.querySelectorAll('[data-bs-theme-value]').forEach((el) => {
+            el.classList.remove('active');
+            el.setAttribute('aria-pressed', 'false');
+            const check = el.querySelector('.bi-check-lg');
+            if (check) check.classList.add('d-none');
+          });
+          const active = document.querySelector(`[data-bs-theme-value="${theme}"]`);
+          if (active) {
+            active.classList.add('active');
+            active.setAttribute('aria-pressed', 'true');
+            const check = active.querySelector('.bi-check-lg');
+            if (check) check.classList.remove('d-none');
+          }
+          // Sync the topbar trigger icon
+          document.querySelectorAll('[data-lte-theme-icon]').forEach((icon) => {
+            icon.classList.toggle('d-none', icon.dataset.lteThemeIcon !== theme);
+          });
+        };
+
+        globalThis.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+          const stored = getStoredTheme();
+          if (!stored || stored === 'auto') setTheme(getPreferredTheme());
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+          showActiveTheme(getPreferredTheme());
+          document.querySelectorAll('[data-bs-theme-value]').forEach((toggle) => {
+            toggle.addEventListener('click', () => {
+              const theme = toggle.getAttribute('data-bs-theme-value');
+              setStoredTheme(theme);
+              setTheme(theme);
+              showActiveTheme(theme);
+            });
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
