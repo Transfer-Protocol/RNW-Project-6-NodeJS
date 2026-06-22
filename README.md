@@ -40,7 +40,7 @@ store user ID which is then being used to handle user login session. This cookie
 
 ---
 
-## 🔹 Project Explanation Video
+## 🔹 Project Explaination Video
 
 
 ---
