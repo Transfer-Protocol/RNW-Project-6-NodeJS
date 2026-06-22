@@ -48,7 +48,7 @@ store user ID which is then being used to handle user login session. This cookie
 ## 🔹 Project Screenshots
 
 ### Project Screen Recording
-[Screen Recording](https://youtu.be/OtZ2FXyQwrQ)
+[Screen Recording (inner view only)](https://youtu.be/OtZ2FXyQwrQ)
 
 ### Dashboard
 <img src="./README_ASSETS/screenshots/dashboard.png">
