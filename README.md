@@ -41,7 +41,7 @@ store user ID which is then being used to handle user login session. This cookie
 ---
 
 ## 🔹 Project Explaination Video
-
+[Project Explaination Video](https://youtu.be/paHxuCgYiw4)
 
 ---
 
@@ -49,7 +49,7 @@ store user ID which is then being used to handle user login session. This cookie
 
 ### Project Screen Recording
 [Screen Recording (inner view only)](https://youtu.be/OtZ2FXyQwrQ)
-
+Search on top of this video to find explaination video because this is another video.
 ### Dashboard
 <img src="./README_ASSETS/screenshots/dashboard.png">
 
